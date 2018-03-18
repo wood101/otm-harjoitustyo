@@ -1,0 +1,98 @@
+commit c03b0f56b4f2d99c1206225bbeb314256b59ec61
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 23:09:58 2018 +0200
+
+    vikaharjoitus
+
+ tiedostoja/file1  | 0
+ tiedostoja/file2  | 0
+ tiedostoja/file22 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 8b999292d80e305b6d4ae9f269b299c32ca4e873
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 23:06:07 2018 +0200
+
+    tiedostoja lisätty
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 2e9c1cc8c0ed8baa1df09129c6b27938f96941e9
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 22:58:01 2018 +0200
+
+    -p
+
+ eka.txt    | 2 +-
+ kolmas.txt | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+commit 753ff7a429105900e0129e456a69b3032e95edd3
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 22:56:37 2018 +0200
+
+    uudelleennimetty tiedosto
+
+ eka.txt      | 1 +
+ tiedosto.txt | 1 -
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+commit 588e8ef428900fb5ff9c467084b82ffe93ce2bd0
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 22:55:20 2018 +0200
+
+    poistettu toinen
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit a30cbf7936888816c9a5baba15fd0c7978e49de0
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 22:53:15 2018 +0200
+
+    uus kansio
+
+ stuff/morestuff.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 3ece9aaf82c87f18881830b53f0b329b36b53cb6
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 22:52:08 2018 +0200
+
+    taas muutoksia txt tiedostoihin
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit d698945f97c681f802e24179e6dd0d11ba38cebe
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 22:51:26 2018 +0200
+
+    kolmannen lisäys
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0ccc8321bbf6e51bbf267cb0cbbab681e2fcd714
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 22:49:35 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 493814131f046b5a9df326447b7077f82dc7a190
+Author: wood101 <puuta_13@hotmail.com>
+Date:   Sun Mar 18 22:47:26 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
