@@ -30,15 +30,15 @@ public class MaksukorttiTest {
     }
     
     @Test
-    public void vaheneminenOikein() {
+    public void ottoToimii() {
         kortti.otaRahaa(5);
-        kortti.otaRahaa(11);
         assertTrue(kortti.saldo() == 5);
     }
     
-    @Test
-    public void saldoEiMuutuJosEiRahaaTarpeeksi() {
+        @Test
+    public void eiVoiOttaaLiikaa() {
         kortti.otaRahaa(11);
-        assertEquals("saldo: 0.10", kortti.toString());      
-    }   
+        assertTrue(kortti.saldo() == 10);
+    }
+    
 }
