@@ -14,6 +14,7 @@ Pelissä liikutetaan kuvassa alhaalla näkyvää lautaa vasemmalle ja oikealle n
 - Erilaisia esteitä, mitä hajottaa
 - Useita elämiä
 - Yksi taso
+- Kimpoileva pallo
 
 - Highscoretaulu, jossa näkyy parhaat pisteet.
     - Highscoreen voi merkitä itsensä nimimerkillä pelin jälkeen.
