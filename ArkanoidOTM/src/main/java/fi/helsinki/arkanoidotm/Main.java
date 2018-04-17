@@ -1,5 +1,6 @@
 package fi.helsinki.arkanoidotm;
 
+import fi.helsinki.arkanoidotm.osat.Game;
 import javax.swing.*;
 
 public class Main {

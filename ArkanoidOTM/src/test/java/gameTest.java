@@ -1,13 +1,19 @@
-import fi.helsinki.arkanoidotm.Board;
-import fi.helsinki.arkanoidotm.Game;
+import fi.helsinki.arkanoidotm.osat.Ball;
+import fi.helsinki.arkanoidotm.osat.Board;
+import fi.helsinki.arkanoidotm.osat.Game;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.JFrame;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 public class gameTest {
     Board board;
+    Ball ball;
     Game game;
     JFrame frame;
+    Graphics g;
+    KeyAdapter ka;
     
         @Before
     public void setUp() {
@@ -16,7 +22,6 @@ public class gameTest {
         game = new Game(frame);
         game.setSize(frame.getSize());
         frame.add(game);
-        game = new Game(frame);
     }
     
     @Test
@@ -27,5 +32,21 @@ public class gameTest {
         
     }
     
+    @Test
+    public void testBallMovement() {
+        ball = new Ball(game, Ball.standardRadius);
+        int x = 500;
+        ball.setVector(x, 0);
+        ball.tick();
+        ball.tick();      
+        assertTrue(x == -ball.getVector().width);
+    }
     
+    
+    @Test
+    public void testLives() {
+        game.lives = 1;
+        game.loseLife();
+        assertTrue(game.lost);
+    }
 }
