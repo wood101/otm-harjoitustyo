@@ -1,5 +1,7 @@
-package fi.helsinki.arkanoidotm.osat;
+package fi.helsinki.arkanoidotm.peli.osat;
 
+import fi.helsinki.arkanoidotm.peli.Game;
+import fi.helsinki.arkanoidotm.peli.Game;
 import java.awt.*;
 
 public class Ball {

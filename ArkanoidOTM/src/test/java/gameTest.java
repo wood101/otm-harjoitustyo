@@ -1,6 +1,6 @@
-import fi.helsinki.arkanoidotm.osat.Ball;
-import fi.helsinki.arkanoidotm.osat.Board;
-import fi.helsinki.arkanoidotm.osat.Game;
+import fi.helsinki.arkanoidotm.peli.osat.Ball;
+import fi.helsinki.arkanoidotm.peli.osat.Board;
+import fi.helsinki.arkanoidotm.peli.Game;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;

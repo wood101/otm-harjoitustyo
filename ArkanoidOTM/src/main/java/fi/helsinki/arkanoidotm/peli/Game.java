@@ -1,5 +1,7 @@
-package fi.helsinki.arkanoidotm.osat;
+package fi.helsinki.arkanoidotm.peli;
 
+import fi.helsinki.arkanoidotm.peli.osat.Board;
+import fi.helsinki.arkanoidotm.peli.osat.Ball;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
