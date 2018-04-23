@@ -7,3 +7,6 @@
 | 17.4. | 3    | Kimpoilevan pallon tekeminen|
 | 17.4. | 1    | Elämien toiminta |
 | 17.4. | 0.5    | Luokkakaavio|
+| 23.4. | 3.5    | Palikat |
+| 23.4. | 0.5    | Voittaminen |
+| 23.4. | 0    | Sekvenssikaavio|
