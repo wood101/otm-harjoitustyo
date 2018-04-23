@@ -11,7 +11,7 @@ Pelissä liikutetaan kuvassa alhaalla näkyvää lautaa vasemmalle ja oikealle n
 ## Toiminnallisuudet
 
 - Liikutettava lauta
-- Erilaisia esteitä, mitä hajottaa
+- Hajoavia esteitä
 - Useita elämiä
 - Yksi taso
 - Kimpoileva pallo
@@ -21,6 +21,7 @@ Pelissä liikutetaan kuvassa alhaalla näkyvää lautaa vasemmalle ja oikealle n
 
 ## Jatkokehitysideoita
 
+- Erilaisia esteitä
 - Poweruppeja
 - Useita eri tasoja
 - Taso generaattori
