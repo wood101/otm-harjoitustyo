@@ -1,14 +1,13 @@
-package fi.helsinki.arkanoidotm.peli.osat;
+package fi.helsinki.arkanoidotm.game.components;
 
-import fi.helsinki.arkanoidotm.peli.Game;
-import fi.helsinki.arkanoidotm.peli.Game;
+import fi.helsinki.arkanoidotm.game.Game;
 import java.awt.*;
 
 public class Ball {
     public static int standardRadius = 8;
     private Game instance;
-    private Dimension vector = new Dimension(0, 0);
-    private Point pos = new Point(0, 0);
+    private Dimension vector;
+    private Point pos;
     private int radius;
     
     public Ball(Game game, int radius) {
@@ -32,12 +31,22 @@ public class Ball {
         }
         
         if (instance.board != null) {
-            if (instance.board.collidesWith(new Rectangle(pos.x - radius, pos.y - radius, radius * 2, radius * 2))) {
+            if (instance.board.collidesWith(new Rectangle(pos.x - radius + vector.width, pos.y - radius + vector.height, radius * 2, radius * 2))) {
                 vector.height = -vector.height;
             }
             
         }
         pos.move(pos.x + vector.width, pos.y + vector.height);
+        
+        for (Block[] xBlocks : instance.getBlocks()) {
+            for (Block block : xBlocks) {
+                if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius, radius * 2, radius * 2))) {
+                    block.destroy();
+                    instance.reduceNumBlocks();
+                    vector.height = -vector.height;
+                }
+            }
+        }
     }
     
     public Dimension getVector() {
