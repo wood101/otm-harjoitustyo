@@ -53,14 +53,19 @@ public class Game extends JPanel {
         thread = new Thread(new Runnable() {
                 public void run() {
                     running = true;
-                    ball.setVector(5, 10);
+                    int time = 0;
+                    ball.setVector(2, 2);
 
                     while (running && !paused) {
-                        ball.tick();
+                        time++;
                         repaint();
                         try {
-                            Thread.sleep(40);
+                            Thread.sleep(1);
                         } catch (Exception e) {
+                        }
+                        if(time == 10){
+                            time = 0;
+                            ball.tick();
                         }
                     }
                 }
@@ -78,6 +83,7 @@ public class Game extends JPanel {
     
     public void stop() {
         running = false;
+        repaint();
     }
     
     public void setSize(Dimension size) {
