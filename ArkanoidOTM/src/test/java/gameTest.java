@@ -29,7 +29,7 @@ public class gameTest {
     @Test
     public void testBoardMovement() {
         board = new Board(game);
-        board.move(-1000);
+        board.setX(-1000);
         assertTrue(board.getBoard().x == 1);
         
     }

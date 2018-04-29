@@ -2,6 +2,7 @@ package fi.helsinki.arkanoidotm.game.components;
 
 import fi.helsinki.arkanoidotm.game.Game;
 import java.awt.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Ball {
     public static int standardRadius = 8;
@@ -9,11 +10,17 @@ public class Ball {
     private Dimension vector;
     private Point pos;
     private int radius;
+    private boolean collided = false;
     
     public Ball(Game game, int radius) {
         instance = game;
-        pos = new Point((int) game.getSize().getWidth() / 2, (int) game.getSize().getHeight() / 2);
+        randomPos();
         this.radius = radius;
+    }
+    
+    public void randomPos() {
+       int x = ThreadLocalRandom.current().nextInt(1, (int) instance.getSize().getWidth());
+       pos = new Point(x, (int) instance.getSize().getHeight() / 2); 
     }
     
     public void tick() {
@@ -37,15 +44,18 @@ public class Ball {
             
         }
         pos.move(pos.x + vector.width, pos.y + vector.height);
-        
         for (Block[] xBlocks : instance.getBlocks()) {
             for (Block block : xBlocks) {
                 if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius, radius * 2, radius * 2))) {
                     block.destroy();
                     instance.reduceNumBlocks();
-                    vector.height = -vector.height;
+                    collided = true;
                 }
             }
+        }
+        if (collided) {
+            vector.height = -vector.height;
+            collided = false;
         }
     }
     

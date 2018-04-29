@@ -24,23 +24,24 @@ public class Game extends JPanel {
     private boolean paused = false;
     
     public Game(Frame container) {
-        container.addKeyListener(new KeyAdapter() {
+        this.setFocusable(true);
+        this.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseMoved(MouseEvent e) {
+                if (running) {
+                    board.setX(e.getX() - board.getBoard().width);
+                    repaint();
+                }
+            }
+        });
+       this.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (!running) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                         start();
                     }
                 }    
-                if (!paused && running) {
-                    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        board.move(20);
-                    }                   
-                    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        board.move(-20);
-                    }
-                    repaint();
-                }
-                /*if (running) {
+                /*
+                if (running) {
                     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                         pause();
                     }
@@ -73,7 +74,7 @@ public class Game extends JPanel {
                 public void run() {
                     running = true;
                     int time = 0;
-                    ball.setVector(2, 2);
+                    ball.setVector(3, 3);
                     while (running) {
                         if (!paused) {
                             time++;
@@ -192,6 +193,7 @@ public class Game extends JPanel {
     public void drawText(Graphics g) {
         if (!running && !lost && !won) {
             g.drawString("Press ENTER to start", getWidth() - field.width, getHeight() - field.height);
+            g.drawString("Use the mouse to move", getWidth() - field.width, getHeight() - field.height + 15);
         } else if (!running && lost && !won) {
             g.drawString("You LOST!", getWidth() - field.width + 5, getHeight() - field.height - 15);
             g.drawString("Press ENTER to start again", getWidth() - field.width, getHeight() - field.height);
@@ -209,7 +211,7 @@ public class Game extends JPanel {
         if (lives == 0) {
             loose(); 
         }
-        ball.setPosition(field.width / 2, field.height / 3);
+        ball.randomPos();
     }
     
     public void loose() {
