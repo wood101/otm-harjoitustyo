@@ -10,3 +10,4 @@
 | 23.4. | 3.5    | Palikat |
 | 23.4. | 0.5    | Voittaminen |
 | 23.4. | 0    | Sekvenssikaavio|
+| 30.4. | 1    | Optimointia ja palkin liikkuminen siirretty toimimaan hiirellä|
