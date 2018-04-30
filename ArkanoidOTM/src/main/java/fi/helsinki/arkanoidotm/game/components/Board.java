@@ -41,9 +41,4 @@ public class Board {
     public void setY(int y) {
         board.y = y;
     }
-    
-    public void render(Graphics g) {
-        g.setColor(new Color(200, 200, 200));
-        g.fillRect(board.x, board.y, board.width, board.height);
-    }
 }

@@ -71,12 +71,11 @@ public class Ball {
         return pos;
     }
     
+    public int getRadius() {
+        return radius;
+    }
+        
     public void setPosition(int x, int y) {
         pos = new Point(x, y);
-    }
-    
-    public void render(Graphics g) {
-        g.setColor(Color.black);
-        g.fillOval(pos.x - radius, pos.y - radius, radius * 2, radius * 2);
     }
 }

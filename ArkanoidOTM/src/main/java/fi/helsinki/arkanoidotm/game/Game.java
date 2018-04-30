@@ -3,6 +3,7 @@ package fi.helsinki.arkanoidotm.game;
 import fi.helsinki.arkanoidotm.game.components.Board;
 import fi.helsinki.arkanoidotm.game.components.Ball;
 import fi.helsinki.arkanoidotm.game.components.Block;
+import fi.helsinki.arkanoidotm.game.graphics.GameGraphics;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -173,39 +174,11 @@ public class Game extends JPanel {
     }
     
     public void paint(Graphics g) {
-        super.paint(g);       
-        g.translate((getWidth() - field.width) / 2, (getHeight() - field.height) / 2);
-        g.setColor(Color.white);
-        g.fillRect(0, 0, field.width, field.height);
-        g.setColor(Color.black);
-        g.drawRect(0, 0, field.width, field.height);
-        g.drawString("Lives: " + lives, 0, -5);
-        for (Block[] xBlocks : blocks) {
-            for (Block block : xBlocks) {
-                block.render(g);
-            }
-        }
-        drawText(g);
-        ball.render(g);
-        board.render(g);
+        super.paint(g);      
+        GameGraphics gg = new GameGraphics();
+        gg.renderGame(g, this);
     }
 
-    public void drawText(Graphics g) {
-        if (!running && !lost && !won) {
-            g.drawString("Press ENTER to start", getWidth() - field.width, getHeight() - field.height);
-            g.drawString("Use the mouse to move", getWidth() - field.width, getHeight() - field.height + 15);
-        } else if (!running && lost && !won) {
-            g.drawString("You LOST!", getWidth() - field.width + 5, getHeight() - field.height - 15);
-            g.drawString("Press ENTER to start again", getWidth() - field.width, getHeight() - field.height);
-        } else if (!running && !lost && won) {
-            g.drawString("You WON! :)", getWidth() - field.width + 5, getHeight() - field.height - 15);
-            g.drawString("Press ENTER to start again", getWidth() - field.width, getHeight() - field.height);
-        }
-    }
-    
-
-
-    
     public void loseLife() {
         lives--;
         if (lives == 0) {

@@ -11,13 +11,12 @@ public class Block {
         block = new Rectangle(x, y, width, height);
     }
     
-    public void render(Graphics g) {
-        if (!destroyed) {
-            g.setColor(Color.RED);
-            g.fillRect(block.x, block.y, block.width, block.height);
-            g.setColor(Color.BLACK);
-            g.drawRect(block.x, block.y, block.width, block.height);
-        }
+    public Rectangle getBlock() {
+        return this.block;
+    }    
+    
+    public boolean getDestroyed() {
+        return this.destroyed;
     }
 
     public boolean collidesWith(Rectangle rectangle) {
