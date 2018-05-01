@@ -1,21 +1,19 @@
-import fi.helsinki.arkanoidotm.game.components.Ball;
-import fi.helsinki.arkanoidotm.game.components.Board;
-import fi.helsinki.arkanoidotm.game.Game;
-import fi.helsinki.arkanoidotm.game.components.Block;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.JFrame;
-import org.junit.*;
-import static org.junit.Assert.*;
 
-public class gameTest {
+import fi.helsinki.arkanoidotm.game.Game;
+import fi.helsinki.arkanoidotm.game.components.Ball;
+import fi.helsinki.arkanoidotm.game.components.Block;
+import fi.helsinki.arkanoidotm.game.components.Board;
+import javax.swing.JFrame;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.Test;
+
+public class BallTest {
     Board board;
     Ball ball;
     Block block;
     Game game;
     JFrame frame;
-    Graphics g;
-    KeyAdapter ka;
     
         @Before
     public void setUp() {
@@ -27,17 +25,10 @@ public class gameTest {
     }
     
     @Test
-    public void testBoardMovement() {
-        board = new Board(game);
-        board.setX(-1000);
-        assertTrue(board.getBoard().x == 1);
-        
-    }
-    
-    @Test
     public void testBallBounceRight() {
         ball = new Ball(game, Ball.standardRadius);
         int x = 500;
+        ball.setPosition(game.getSize().width / 2, 0);
         ball.setVector(x, 0);
         ball.tick();
         ball.tick();      
@@ -48,6 +39,7 @@ public class gameTest {
     public void testBallBounceLeft() {
         ball = new Ball(game, Ball.standardRadius);
         int x = -500;
+        ball.setPosition(game.getSize().width / 2, 0);
         ball.setVector(x, 0);
         ball.tick();
         ball.tick();      
@@ -86,19 +78,5 @@ public class gameTest {
         ball.tick();
         ball.tick();      
         assertTrue(x == -ball.getVector().height);
-    }
-    
-    @Test
-    public void testLives() {
-        game.lives = 1;
-        game.loseLife();
-        assertTrue(game.lost);
-    }
-    
-    @Test
-    public void testWin() {
-        game.numBlocks = 1;
-        game.reduceNumBlocks();
-        assertTrue(game.won);
-    }
+    }    
 }

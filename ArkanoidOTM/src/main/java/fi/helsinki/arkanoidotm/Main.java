@@ -4,8 +4,8 @@ import fi.helsinki.arkanoidotm.game.Game;
 import javax.swing.*;
 
 public class Main {
-    public static JFrame frame;
-    public static Game game;
+    private static JFrame frame;
+    private static Game game;
     
     public static void main(String[] args) {
         frame = new JFrame("Arkanoid");

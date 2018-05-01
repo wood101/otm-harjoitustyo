@@ -3,8 +3,13 @@ package fi.helsinki.arkanoidotm.game.components;
 import fi.helsinki.arkanoidotm.game.Game;
 import java.awt.*;
 import java.util.concurrent.ThreadLocalRandom;
-
+/**
+ * Luokka luo pelissä liikkuvan pallo.
+ */
 public class Ball {
+    /**
+     * Oletusarvoinen säde.
+     */
     public static int standardRadius = 8;
     private Game instance;
     private Dimension vector;
@@ -12,51 +17,15 @@ public class Ball {
     private int radius;
     private boolean collided = false;
     
+    /**
+     * Luo uuden pallon ja asettaa sen satunnaiseen paikkaan vaakatasolla.
+     * @param game Tällä hetkellä meneillään oleva peli.
+     * @param radius Pallon säde.
+     */
     public Ball(Game game, int radius) {
         instance = game;
         randomPos();
         this.radius = radius;
-    }
-    
-    public void randomPos() {
-       int x = ThreadLocalRandom.current().nextInt(1, (int) instance.getSize().getWidth());
-       pos = new Point(x, (int) instance.getSize().getHeight() / 2); 
-    }
-    
-    public void tick() {
-        if (pos.x - radius <= 0 && vector.width < 0) {
-            vector.width = -vector.width;
-        }
-        if (pos.x + radius >= instance.getSize().getWidth() && vector.width > 0) {
-            vector.width = -vector.width;
-        }
-        if (pos.y - radius <= 0 && vector.height < 0) {
-            vector.height = -vector.height;
-        }
-        if (pos.y + radius >= instance.getSize().getHeight() && vector.height > 0) {
-            instance.loseLife();
-        }
-        
-        if (instance.board != null) {
-            if (instance.board.collidesWith(new Rectangle(pos.x - radius + vector.width, pos.y - radius + vector.height, radius * 2, radius * 2))) {
-                vector.height = -vector.height;
-            }
-            
-        }
-        pos.move(pos.x + vector.width, pos.y + vector.height);
-        for (Block[] xBlocks : instance.getBlocks()) {
-            for (Block block : xBlocks) {
-                if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius, radius * 2, radius * 2))) {
-                    block.destroy();
-                    instance.reduceNumBlocks();
-                    collided = true;
-                }
-            }
-        }
-        if (collided) {
-            vector.height = -vector.height;
-            collided = false;
-        }
     }
     
     public Dimension getVector() {
@@ -77,5 +46,66 @@ public class Ball {
         
     public void setPosition(int x, int y) {
         pos = new Point(x, y);
+    }
+    /**
+     * Asettaa pallon satunnaiseen kohtaan vaakatasolla.
+     */
+    public void randomPos() {
+        int x = ThreadLocalRandom.current().nextInt(1, (int) instance.getSize().getWidth());
+        pos = new Point(x, (int) instance.getSize().getHeight() / 2); 
+    }
+    /**
+     * Siirtää palloa.
+     */
+    public void tick() {
+        checkGameFieldEdgeCollision();
+        checkBoardCollision();
+        pos.move(pos.x + vector.width, pos.y + vector.height);
+        checkBlockCollision();
+    }
+    /**
+     * Tarkistaa törmääkö pallo pelikentän reunoihin.
+     */
+    public void checkGameFieldEdgeCollision() {
+        if (pos.x - radius <= 0 && vector.width < 0) {
+            vector.width = -vector.width;
+        }
+        if (pos.x + radius >= instance.getSize().getWidth() && vector.width > 0) {
+            vector.width = -vector.width;
+        }
+        if (pos.y - radius <= 0 && vector.height < 0) {
+            vector.height = -vector.height;
+        }
+        if (pos.y + radius >= instance.getSize().getHeight() && vector.height > 0) {
+            instance.loseLife();
+        }
+    }
+    /**
+     * Tarkistaa törmääkö pallo pelaajan lautaan.
+     */
+    public void checkBoardCollision() {
+        if (instance.getGameBoard() != null) {
+            if (instance.getGameBoard().collidesWith(new Rectangle(pos.x - radius + vector.width, pos.y - radius + vector.height, radius * 2, radius * 2))) {
+                vector.height = -vector.height;
+            } 
+        }        
+    }
+    /**
+     * Tarkistaa törmääkö pallo esteisiin.
+     */
+    public void checkBlockCollision() {
+        for (Block[] xBlocks : instance.getBlocks()) {
+            for (Block block : xBlocks) {
+                if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius, radius * 2, radius * 2))) {
+                    block.destroy();
+                    instance.reduceNumOfBlocks();
+                    collided = true;
+                }
+            }
+        }
+        if (collided) {
+            vector.height = -vector.height;
+            collided = false;
+        }
     }
 }
