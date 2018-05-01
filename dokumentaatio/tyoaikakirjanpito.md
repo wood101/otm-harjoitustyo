@@ -11,3 +11,11 @@
 | 23.4. | 0.5    | Voittaminen |
 | 23.4. | 0    | Sekvenssikaavio|
 | 30.4. | 1    | Optimointia ja palkin liikkuminen siirretty toimimaan hiirellä|
+| 1.5. | 0,5    | Grafiikat siirretty omaan pakettiin|
+| 1.5. | 6    | Yritetty saada Google sheetsiä toimimaan tietokantana|
+| 1.5. | 1    | Pistelaskenta|
+| 1.5. | 1    | Javadoc|
+| 1.5. | 0    | Käyttöohje|
+| 1.5. | 0.5    | Arkkitehtuurikuvaus|
+<br>
+Tunnit yhteensä: 21
