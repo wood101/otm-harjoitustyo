@@ -1,6 +1,6 @@
 # Arkkitehtuurikuvaus
 
-Koodin pakkausrakenne menee seuraavan kaavion mukaan:
+Koodin pakkausrakenne noudattaa seuraavaa kaaviota:
 <br>
 <img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/pakkauskaavio.png">
 <br>
