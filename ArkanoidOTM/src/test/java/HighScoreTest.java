@@ -17,10 +17,10 @@ public class HighScoreTest {
     private static Sheets sheetsService;
     private static String SPREADSHEET_ID = "1QQmmAWKtWSMejc_26vOyew0qZg_niVJ9I0AAVfF9tuE";
  
-    /*@BeforeClass
+   /* @BeforeClass
     public static void setup() throws GeneralSecurityException, IOException {
         sheetsService = HighScoreDao.getSheetsService();
-    }*/
+    }
     
     /*@Test
     public void spreadSheetTest() throws IOException {
@@ -31,13 +31,12 @@ public class HighScoreTest {
           .create(spreadSheet).execute();
 
         assertTrue(result.getSpreadsheetId() != null);   
-    }*/
+    }
     
-    /*@Test
+    @Test
     public void whenWriteSheet_thenReadSheetOk() throws IOException {
         ValueRange body = new ValueRange()
           .setValues(Arrays.asList(
-            Arrays.asList(""), 
             Arrays.asList("ASD", 5000), 
             Arrays.asList("FDD", 5000), 
             Arrays.asList("SSD", 9000), 

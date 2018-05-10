@@ -59,12 +59,12 @@ public class BallTest {
     @Test
     public void testBallBounceDown() {
         ball = new Ball(game, Ball.standardRadius);
-        game.lives = 3;
+        game.setLives(3);
         int x = 500;
         ball.setVector(0, x);
         ball.tick();
         ball.tick();      
-        assertTrue(game.lives == 2);
+        assertTrue(game.getLives() == 2);
     }
     
     @Test

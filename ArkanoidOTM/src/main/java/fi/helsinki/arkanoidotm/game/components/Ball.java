@@ -51,7 +51,7 @@ public class Ball {
      * Asettaa pallon satunnaiseen kohtaan vaakatasolla.
      */
     public void randomPos() {
-        int x = ThreadLocalRandom.current().nextInt(1, (int) instance.getSize().getWidth());
+        int x = ThreadLocalRandom.current().nextInt(5, (int) instance.getSize().getWidth() - 5);
         pos = new Point(x, (int) instance.getSize().getHeight() / 2); 
     }
     /**
@@ -87,24 +87,44 @@ public class Ball {
         if (instance.getGameBoard() != null) {
             if (instance.getGameBoard().collidesWith(new Rectangle(pos.x - radius + vector.width, pos.y - radius + vector.height, radius * 2, radius * 2))) {
                 vector.height = -vector.height;
-            } 
+            }
         }        
     }
     /**
      * Tarkistaa törmääkö pallo esteisiin.
      */
     public void checkBlockCollision() {
+        boolean side = false;
+        boolean top = false;
         for (Block[] xBlocks : instance.getBlocks()) {
             for (Block block : xBlocks) {
-                if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius, radius * 2, radius * 2))) {
+                if (block.collidesWith(new Rectangle(pos.x - radius - vector.height, pos.y - radius, radius * 2 - vector.height * 2, radius * 2))) {
+                    top = true;
+                    block.destroy();
+                    instance.reduceNumOfBlocks();
+                    collided = true;
+                }
+                if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius - vector.height, radius * 2, radius * 2 - vector.height * 2))) {
+                    side = true;
                     block.destroy();
                     instance.reduceNumOfBlocks();
                     collided = true;
                 }
             }
         }
-        if (collided) {
-            vector.height = -vector.height;
+        if(collided){
+            if (top) {
+                vector.height = -vector.height;
+                top = false;
+            } else if (side) {
+                vector.width = -vector.width;
+                side = false;
+            } else if (side && top) {
+                vector.width = -vector.width;
+                vector.height = -vector.height;
+                top = false;
+                side = false;
+            }
             collided = false;
         }
     }

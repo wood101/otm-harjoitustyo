@@ -17,5 +17,7 @@
 | 1.5. | 1    | Javadoc|
 | 1.5. | 0    | Käyttöohje|
 | 1.5. | 0.5    | Arkkitehtuurikuvaus|
+| 10.5. | 7    | Sheets tietokanta|
+| 10.5. | 3    | Viimeistelyä|
 <br>
-Tunnit yhteensä: 21
+Tunnit yhteensä: 31

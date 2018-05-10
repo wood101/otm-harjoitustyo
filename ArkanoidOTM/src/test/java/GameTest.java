@@ -32,15 +32,15 @@ public class GameTest {
     
     @Test
     public void testLives() {
-        game.lives = 1;
+        game.setLives(1);
         game.loseLife();
-        assertTrue(game.lost);
+        assertTrue(game.getLost());
     }
     
     @Test
     public void testWin() {
         game.setNumBlocks(1);
         game.reduceNumOfBlocks();
-        assertTrue(game.won);
+        assertTrue(game.getWon());
     }
 }

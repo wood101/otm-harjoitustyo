@@ -7,6 +7,7 @@ import fi.helsinki.arkanoidotm.graphics.GameGraphics;
 import fi.helsinki.arkanoidotm.game.highscore.HighScore;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.LinkedList;
 import javax.swing.*;
 
 /**
@@ -23,10 +24,10 @@ public class Game extends JPanel {
     private GameGraphics gg = new GameGraphics();
     private Thread thread;
     private int numBlocks;
-    public int lives = 3;
-    public boolean running;
-    public boolean lost = false;
-    public boolean won = false;
+    private int lives = 3;
+    private boolean running;
+    private boolean lost = false;
+    private boolean won = false;
     
     /**
     * Game luokan konstruktori, joka luo komponentit peliin ja mahdollistaa kontrollit.
@@ -74,8 +75,8 @@ public class Game extends JPanel {
         return this.blocks;
     }    
     
-    public int getGameScore() {
-        return this.score.getScore();
+    public HighScore getGameScore() {
+        return this.score;
     }
     
     public void setNumBlocks(int x) {
@@ -84,6 +85,26 @@ public class Game extends JPanel {
     
     public Dimension getSize() {
         return field;
+    }
+    
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+    
+    public int getLives() {
+        return this.lives;
+    }
+    
+    public boolean getWon() {
+        return this.won;
+    }
+    
+    public boolean getRunning() {
+        return this.running;
+    }
+    
+    public boolean getLost() {
+        return this.lost;
     }
     /**
      * Asettaa pelikentän koon ja resetoi sen komponentit.
@@ -119,10 +140,7 @@ public class Game extends JPanel {
      * Asettaa pelin alkuarvot ja laittaa pelin liikkumaan.
      */
     public void start() {
-        lost = false;
-        won = false;
-        lives = 3;
-        score.reset();
+        resetStats();
         thread = new Thread(new Runnable() {
                 public void run() {
                     running = true;
@@ -146,6 +164,13 @@ public class Game extends JPanel {
         thread.start();
     }
     
+    public void resetStats(){
+        lost = false;
+        won = false;
+        lives = 3;
+        score.reset();
+    }
+    
     /**
     * Pysäyttää pelin.
     */
@@ -156,7 +181,8 @@ public class Game extends JPanel {
      * Asettaa komponenti oikeille paikoilleen uutta peliä varten.
      */
     public void reset() {
-        ball.setPosition(field.width / 2, field.height / 3);
+        ball.randomPos();
+        ball.setVector(4, 4);
         board.setX(field.width / 2 - Board.standardWidth / 2);
         board.setY(field.height - Board.standardHeight);
         numBlocks = blocksX * blocksY;
@@ -178,7 +204,7 @@ public class Game extends JPanel {
         numBlocks--;
         score.scoreGainForBlock();
         if (numBlocks <= 0) {
-            won();
+            inputHighScore();
         }
     }
     /**
@@ -188,9 +214,6 @@ public class Game extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         gg.renderGame(g, this);
-        if (won) {
-            gg.renderHighScore(g, score, getSize());
-        }
     }
     /**
      * Vähentää elämien määrää,
@@ -219,13 +242,18 @@ public class Game extends JPanel {
         reset();
     }
     
+    public void inputHighScore() {
+        gg.renderUsernameBox(this);
+        stop();
+    }
+    
     /**
      * Voittaa pelin ja resetoi sen uutta peliä varten.
      */
-    public void won() {
+    public void won(String user) {
+        score.WriteScoreIfHighScore(score.getScore(), user);
         won = true;
         repaint();
-        stop();
         reset();
     }
 }
