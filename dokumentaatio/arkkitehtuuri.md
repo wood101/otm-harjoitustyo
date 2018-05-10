@@ -19,7 +19,7 @@ Sovelluksen toiminta tapahtuu lähinnä luokissa [Game](https://github.com/wood1
 
 ### Luokkakaavio
 <br>
-<img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/luokkakaavio.jpg">
+<img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/luokkakaavio.png">
 
 ### Sekvenssikaavio
 Muutamia olennaisimpia toiminnallisuuksia kuvaava sekvenssikaavio:
