@@ -6,12 +6,12 @@ Ohjelmaa on testattu sekä automatisoiduin yksikkö- ja integraatiotestein JUnit
 
 ### sovelluslogiikka
 
-Tärkeimmät testit tapahtuvat Ball-olion testaavassa [BallTest.java] (https://github.com/wood101/otm-harjoitustyo/blob/master/ArkanoidOTM/src/test/java/BallTest.java) luokassa, sillä pallon liikkuminen on pelin tärkein toiminto.
-[GameTest.java] (https://github.com/wood101/otm-harjoitustyo/blob/master/ArkanoidOTM/src/test/java/GameTest.java) luokassa testataan lähinnä pelin käynnistymistä, kulkua ja päättymistä.
+Tärkeimmät testit tapahtuvat Ball-olion testaavassa [BallTest.java](https://github.com/wood101/otm-harjoitustyo/blob/master/ArkanoidOTM/src/test/java/BallTest.java) luokassa, sillä pallon liikkuminen on pelin tärkein toiminto.
+[GameTest.java](https://github.com/wood101/otm-harjoitustyo/blob/master/ArkanoidOTM/src/test/java/GameTest.java) luokassa testataan lähinnä pelin käynnistymistä, kulkua ja päättymistä.
 
 ### DAO
 
-[HighScoreTest.java] (https://github.com/wood101/otm-harjoitustyo/blob/master/ArkanoidOTM/src/test/java/HighScoreTest.java) testaa HighScore-luokkaa joku hakee HighScoreDaon avulla tietoa Google Sheetistä. Sheetin testaaminen vaatii Google-tunnuksen.
+[HighScoreTest.java](https://github.com/wood101/otm-harjoitustyo/blob/master/ArkanoidOTM/src/test/java/HighScoreTest.java) testaa HighScore-luokkaa joku hakee HighScoreDaon avulla tietoa Google Sheetistä. Sheetin testaaminen vaatii Google-tunnuksen.
 
 ### Testauskattavuus
 
