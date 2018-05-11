@@ -75,7 +75,8 @@
                 <version>0.8.0</version>
                 <configuration>
                     <excludes>
-                        <exclude>fi/helsinki/arkanoidotm/game/graphics/*</exclude>
+                        <exclude>fi/helsinki/arkanoidotm/graphics/*</exclude>
+                        <exclude>fi/helsinki/arkanoidotm/*.class</exclude>
                     </excludes>
                 </configuration>  
                 <executions>

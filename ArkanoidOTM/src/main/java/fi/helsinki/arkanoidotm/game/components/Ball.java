@@ -16,6 +16,8 @@ public class Ball {
     private Point pos;
     private int radius;
     private boolean collided = false;
+    private boolean side = false;
+    private boolean top = false;
     
     /**
      * Luo uuden pallon ja asettaa sen satunnaiseen paikkaan vaakatasolla.
@@ -31,7 +33,11 @@ public class Ball {
     public Dimension getVector() {
         return vector;
     }
-    
+    /**
+     * Asettaa pallon suunnan ja nopeuden.
+     * @param xMove x-akselin liike
+     * @param yMove y-akselin liike
+     */
     public void setVector(int xMove, int yMove) {
         vector = new Dimension(xMove, yMove);
     }
@@ -43,7 +49,11 @@ public class Ball {
     public int getRadius() {
         return radius;
     }
-        
+    /**
+     * Asettaa pallon haluttuun kohtaan.
+     * @param x piste x-akselilla
+     * @param y piste y-akselilla
+     */    
     public void setPosition(int x, int y) {
         pos = new Point(x, y);
     }
@@ -60,8 +70,8 @@ public class Ball {
     public void tick() {
         checkGameFieldEdgeCollision();
         checkBoardCollision();
-        pos.move(pos.x + vector.width, pos.y + vector.height);
         checkBlockCollision();
+        pos.move(pos.x + vector.width, pos.y + vector.height);
     }
     /**
      * Tarkistaa törmääkö pallo pelikentän reunoihin.
@@ -84,27 +94,23 @@ public class Ball {
      * Tarkistaa törmääkö pallo pelaajan lautaan.
      */
     public void checkBoardCollision() {
-        if (instance.getGameBoard() != null) {
-            if (instance.getGameBoard().collidesWith(new Rectangle(pos.x - radius + vector.width, pos.y - radius + vector.height, radius * 2, radius * 2))) {
-                vector.height = -vector.height;
-            }
-        }        
+        if (instance.getGameBoard().collidesWith(new Rectangle(pos.x - radius + vector.width, pos.y - radius + vector.height, radius * 2, radius * 2))) {
+            vector.height = -vector.height;
+        }    
     }
     /**
-     * Tarkistaa törmääkö pallo esteisiin.
+     * Tarkistaa törmääkö pallo palikoihin.
      */
     public void checkBlockCollision() {
-        boolean side = false;
-        boolean top = false;
         for (Block[] xBlocks : instance.getBlocks()) {
             for (Block block : xBlocks) {
-                if (block.collidesWith(new Rectangle(pos.x - radius - vector.height, pos.y - radius, radius * 2 - vector.height * 2, radius * 2))) {
+                if (block.collidesWith(new Rectangle(pos.x - radius / 2, pos.y - radius, radius, radius * 2))) {
                     top = true;
                     block.destroy();
                     instance.reduceNumOfBlocks();
                     collided = true;
                 }
-                if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius - vector.height, radius * 2, radius * 2 - vector.height * 2))) {
+                if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius / 2, radius * 2, radius))) {
                     side = true;
                     block.destroy();
                     instance.reduceNumOfBlocks();
@@ -112,20 +118,23 @@ public class Ball {
                 }
             }
         }
-        if(collided){
+        changeVectorOnBlockCollision();
+    }
+    
+    /**
+     * Vaihtaa pallon suuntaa.
+     */
+    public void changeVectorOnBlockCollision() {
+        if (collided) {
+            if (side) {
+                vector.width = -vector.width;
+                side = false;
+            }
             if (top) {
                 vector.height = -vector.height;
                 top = false;
-            } else if (side) {
-                vector.width = -vector.width;
-                side = false;
-            } else if (side && top) {
-                vector.width = -vector.width;
-                vector.height = -vector.height;
-                top = false;
-                side = false;
             }
-            collided = false;
         }
+        collided = false;
     }
 }

@@ -10,17 +10,28 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * Pelin grafiikoista vastuussa oleva luokka.
+ */
 public class GameGraphics {
 
     private String content;
     
+    /**
+     * Piirtää pelin ja sen osat.
+     * @param g Grafiikka olio
+     * @param game Tämänhetkinen peli instanssi.
+     */
     public void renderGame(Graphics g, Game game) {   
         g.translate((game.getWidth() - game.getGameField().width) / 2, (game.getHeight() - game.getGameField().height) / 2);
         g.setColor(Color.white);
@@ -39,7 +50,12 @@ public class GameGraphics {
         renderBall(g, game.getGameBall());
         renderBoard(g, game.getGameBoard().getBoard());
     }
-
+    
+    /**
+     * Piirtää pelissä useimmin näkyvissä olevat tekstit.
+     * @param g
+     * @param game 
+     */
     public void renderText(Graphics g, Game game) {
         g.drawString("Lives: " + game.getLives(), 0, -5);
         g.drawString("Score: " + game.getGameScore().getScore(), 100, -5);
@@ -51,17 +67,29 @@ public class GameGraphics {
             g.drawString("Press ENTER to start again", game.getWidth() - game.getGameField().width, game.getHeight() - game.getGameField().height);
         }
     }
-    
+    /**
+     * Piirtää pallon.
+     * @param g
+     * @param ball Pelin pallo
+     */
     public void renderBall(Graphics g, Ball ball) {
         g.setColor(Color.black);
         g.fillOval(ball.getPosition().x - ball.getRadius(), ball.getPosition().y - ball.getRadius(), ball.getRadius() * 2, ball.getRadius() * 2);
     }
-    
+    /**
+     * Piirtää pelaajan pelilaudan.
+     * @param g
+     * @param board pelilauta
+     */
     public void renderBoard(Graphics g, Rectangle board) {
         g.setColor(new Color(200, 200, 200));
         g.fillRect(board.x, board.y, board.width, board.height);
     }
-    
+    /**
+     * Piirtää palikat, jos ne ovat ehjiä.
+     * @param g
+     * @param block palikka
+     */
     public void renderBlock(Graphics g, Block block) {
         if (!block.getDestroyed()) {
             g.setColor(Color.RED);
@@ -70,7 +98,12 @@ public class GameGraphics {
             g.drawRect(block.getBlock().x, block.getBlock().y, block.getBlock().width, block.getBlock().height);
         }
     }
-    
+    /**
+     * Piirtää pistetaulukon kehyksen.
+     * @param g
+     * @param score tämänhetkiset pisteet
+     * @param field 
+     */
     public void renderHighScore(Graphics g, HighScore score, Dimension field) {
         g.setColor(Color.white);
         g.fillRect(field.width / 2 - 100, field.height / 3, 200, field.height / 2);
@@ -80,6 +113,11 @@ public class GameGraphics {
         renderScores(g, score);
     }
     
+    /**
+     * Piirtää pistetaulukon.
+     * @param g
+     * @param score tämänhetkiset pisteet
+     */
     public void renderScores(Graphics g, HighScore score) {
         ArrayList<ArrayList> list = score.getHighScoreBoard();
         g.drawString("HighScores:", 45, 30);
@@ -89,10 +127,13 @@ public class GameGraphics {
             j++;
         }
         g.drawString("Congratulations, you won!", 10, 15);
-        /*g.drawString("Your score is: "+ score.getScore() + " points", 10, 100);*/
         g.drawString("Press ENTER to start again", 10, 195);
     }
     
+    /**
+     * Piirtää käyttäjänimensyöttölaatikon.
+     * @param game 
+     */
     public void renderUsernameBox(Game game) {
         final JDialog inputWindow = new JDialog();
         inputWindow.setUndecorated(true);
@@ -124,5 +165,28 @@ public class GameGraphics {
         });
         inputWindow.add(noScore);
         inputWindow.setVisible(true);
+    }
+    
+    /**
+     * Tekee kontrollit peliin.
+     */
+    public void createControls(Game game) {
+        game.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseMoved(MouseEvent e) {
+                if (game.getRunning()) {
+                    game.getGameBoard().setX(e.getX() - game.getGameBoard().getBoard().width);
+                    game.repaint();
+                }
+            }
+        });
+        game.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (!game.getRunning()) {
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        game.start();
+                    }
+                }    
+            }    
+        });
     }
 }

@@ -37,9 +37,6 @@ public class Board {
         return this.board;
     }
     
-    public void setBoard(Rectangle board) {
-        this.board = board;
-    }
     /**
      * Asettaa laudan tiettyyn kohtaan vaakatasolla, jos se on pelikentän sisällä.
      * @param x Kohta, johon lauta halutaan.

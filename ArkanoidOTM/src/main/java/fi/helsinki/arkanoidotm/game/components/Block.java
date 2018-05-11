@@ -27,7 +27,7 @@ public class Block {
         return this.destroyed;
     }
     /**
-     * Tarkistaa onko pallo törmännyt esteeseen
+     * Tarkistaa onko pallo törmännyt esteeseen.
      * @param rectangle Törmäävä esine.
      * @return Palauttaa true, jos pallo törmäsi ja este ei ollut tuhottu.
      */

@@ -6,8 +6,6 @@ import fi.helsinki.arkanoidotm.game.components.Block;
 import fi.helsinki.arkanoidotm.graphics.GameGraphics;
 import fi.helsinki.arkanoidotm.game.highscore.HighScore;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.LinkedList;
 import javax.swing.*;
 
 /**
@@ -25,6 +23,7 @@ public class Game extends JPanel {
     private Thread thread;
     private int numBlocks;
     private int lives = 3;
+    private int time = 0;
     private boolean running;
     private boolean lost = false;
     private boolean won = false;
@@ -35,23 +34,7 @@ public class Game extends JPanel {
     */
     public Game(Frame container) {
         this.setFocusable(true);
-        this.addMouseMotionListener(new MouseMotionAdapter() {
-            public void mouseMoved(MouseEvent e) {
-                if (running) {
-                    board.setX(e.getX() - board.getBoard().width);
-                    repaint();
-                }
-            }
-        });
-        this.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (!running) {
-                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        start();
-                    }
-                }    
-            }    
-            });
+        gg.createControls(this);
         createObjects(blocksX, blocksY);
     }
     
@@ -73,7 +56,11 @@ public class Game extends JPanel {
     
     public Block[][] getBlocks() {
         return this.blocks;
-    }    
+    }
+
+    public void setBlocks(Block[][] blocks) {
+        this.blocks = blocks;
+    }
     
     public HighScore getGameScore() {
         return this.score;
@@ -112,11 +99,10 @@ public class Game extends JPanel {
      */
     public void setSize(Dimension size) {
         super.setSize(size);
-        if (!running) {
-            field = new Dimension(size.width - 200, size.height - 200);
-            reset();
-        }
+        field = new Dimension(size.width - 200, size.height - 200);
+        reset();
     }
+    
     /** 
     * Luo peliin uudet komponentit.
     * @param blocksX Vaakatason esteiden määrä
@@ -124,47 +110,65 @@ public class Game extends JPanel {
     */
     public void createObjects(int blocksX, int blocksY) {
         numBlocks = blocksX * blocksY;
+        createBlocks(8);
+        board = new Board(this);
+        ball = new Ball(this, Ball.standardRadius);
+    }
+    
+    /**
+     * Tekee pelin palikat.
+     * @param distTop Palikat suhteessa pelikentän huippuun.
+     */
+    public void createBlocks(int distTop) {
         blocks = new Block[blocksX][blocksY];
         for (int x = 0; x != blocks.length; x++) {
             for (int y = 0; y != blocks[0].length; y++) {
                 int bWidth = field.width / blocksX;
-                int bHeight = (field.height / 8) / blocksY;
+                int bHeight = (field.height / distTop) / blocksY;
                 blocks[x][y] = new Block(x * bWidth, y * bHeight, bWidth, bHeight);
             }
         }
-        board = new Board(this);
-        ball = new Ball(this, Ball.standardRadius);
     }
     
     /**
      * Asettaa pelin alkuarvot ja laittaa pelin liikkumaan.
      */
     public void start() {
+        running = true;
         resetStats();
         thread = new Thread(new Runnable() {
                 public void run() {
-                    running = true;
-                    int time = 0;
-                    ball.setVector(4, 4);
                     while (running) {
-                        time++;
                         repaint();
                         try {
                             Thread.sleep(1);
                         } catch (Exception e) {
                         }
-                        if (time == 10) {
-                            time = 0;
-                            score.scoreLossForTime();
-                            ball.tick();
-                        }
+                        moveBall(1);
                     }
                 }
         });
         thread.start();
     }
     
-    public void resetStats(){
+    /**
+     * Move ball at specific thread ticks.
+     * @param x How often to move ball.
+     */
+    public void moveBall(int x) {
+        time += x;
+        if (time == 10) {
+            time = 0;
+            score.scoreLossForTime();
+            ball.tick();
+        }
+    }
+    
+    /**
+     * Resetoi arvot uutta peliä varten.
+     */
+    public void resetStats() {
+        ball.setVector(4, 4);
         lost = false;
         won = false;
         lives = 3;
@@ -186,14 +190,7 @@ public class Game extends JPanel {
         board.setX(field.width / 2 - Board.standardWidth / 2);
         board.setY(field.height - Board.standardHeight);
         numBlocks = blocksX * blocksY;
-        blocks = new Block[blocksX][blocksY];
-        for (int x = 0; x != blocks.length; x++) {
-            for (int y = 0; y != blocks[0].length; y++) {
-                int bWidth = field.width / blocksX;
-                int bHeight = (field.height / 4) / blocksY;
-                blocks[x][y] = new Block(x * bWidth, y * bHeight, bWidth, bHeight);
-            }
-        }
+        createBlocks(4);
         repaint();
     }
     /**
@@ -208,7 +205,7 @@ public class Game extends JPanel {
         }
     }
     /**
-     * Piirtää käyttöliittymän
+     * Piirtää käyttöliittymän.
      * @param g Käyttöliittymän mahdollistavat grafiikat
      */
     public void paint(Graphics g) {
@@ -241,17 +238,25 @@ public class Game extends JPanel {
         stop();
         reset();
     }
-    
+    /**
+     * Kutsuu käyttäjänimensyöttö tekstilaatikkoa ja pysäyttää pelin.
+     * @see fi.helsinki.arkanoidotm.graphics.GameGraphics#renderUsernameBox(Game) 
+     */
     public void inputHighScore() {
-        gg.renderUsernameBox(this);
-        stop();
+        if (score.getScore() > 0) {
+            gg.renderUsernameBox(this);
+        }        
+        stop();    
     }
     
     /**
+     * Kutsuu HighScoreen kirjoitusta.
      * Voittaa pelin ja resetoi sen uutta peliä varten.
+     * @param user käyttäjänimi
+     * @see fi.helsinki.arkanoidotm.game.highscore.HighScore#WriteScoreIfHighScore(HighScore, String) 
      */
     public void won(String user) {
-        score.WriteScoreIfHighScore(score.getScore(), user);
+        score.writeScoreIfHighScore(score.getScore(), user);
         won = true;
         repaint();
         reset();

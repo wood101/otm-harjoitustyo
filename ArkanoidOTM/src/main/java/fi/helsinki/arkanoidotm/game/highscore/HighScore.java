@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Luokka pisteistä.
@@ -48,19 +45,26 @@ public class HighScore {
     public void scoreGainForBlock() {
         this.score += 1000;
     }
-    
-    public void WriteScoreIfHighScore(int newScore, String user) {
+    /**
+     * Kutsuu Google taulukkoon kirjoitusta, jos pisteet ovat riittävän suuret.
+     * @param newScore Käyttäjän pisteet
+     * @param user Käyttäjänimi
+     */
+    public void writeScoreIfHighScore(int newScore, String user) {
         int old = 0;
         try {
-            old = HighScoreDao.readOldScore(newScore);
+            old = HighScoreDao.readOldScore();
         } catch (IOException ex) {
         } catch (GeneralSecurityException ex) {
         }
-        if(newScore > old) {
+        if (newScore > old) {
             HighScoreDao.writeNewScore(newScore, user);   
         }
     }
-    
+    /**
+     * Muodostaa pistetaulukon.
+     * @return palauttaa pistetaulukon
+     */
     public ArrayList<ArrayList> getHighScoreBoard() {
         ArrayList<ArrayList> highScore = new ArrayList();
         List<ValueRange> scores = HighScoreDao.readHighScore();
