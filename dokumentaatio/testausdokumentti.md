@@ -15,9 +15,9 @@ Tärkeimmät testit tapahtuvat Ball-olion testaavassa [BallTest.java](https://gi
 
 ### Testauskattavuus
 
-Käyttöliittymää ja Main-luokkaa huomioimatta sovelluksen testauksen rivikattavuus on 96% ja haarautumakattavuus 93%
+Käyttöliittymää ja Main-luokkaa huomioimatta sovelluksen testauksen rivikattavuus on 96% ja haarautumakattavuus 94%
 
-<img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/jacoco.png">>
+<img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/jacoco.png">
 
 
 ### Asennus
@@ -30,4 +30,4 @@ Kaikki [perustoiminnallisuudet](http://github.com/wood101/otm-harjoitustyo/blob/
 
 ## Sovellukseen jääneet laatuongelmat
 
-Sovellus vaatii Google tunnuksen taulukon lukua ja kirjoitusta varten.
+Taulukkotesti kirjoittaa käytössäolevaan taulukkoon testidataa.

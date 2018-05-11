@@ -28,6 +28,7 @@ Pelin ja sen komponenttien suhdetta kuvaava luokkakaavio:
 <img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/luokkakaavio.png">
 
 ### Sekvenssikaavio
+
 Muutamia olennaisimpia toiminnallisuuksia kuvaava sekvenssikaavio, liittyen lähinnä pallon toimintaan:
 <br>
 <img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/sekvenssikaavio.png">
@@ -35,7 +36,7 @@ Muutamia olennaisimpia toiminnallisuuksia kuvaava sekvenssikaavio, liittyen läh
 
 ## Tietojen pysyväistallennus
 
-HighScore-taulukko on tallennettu vapaasti muokattavissa olevaan Google Sheettiin, josta sovellus lukee ja jonne sovellus kirjoittaa. Tietojen luku ja kirjoitus löytyy [HighScoreDao.java](https://github.com/wood101/otm-harjoitustyo/blob/master/ArkanoidOTM/src/main/java/fi/helsinki/arkanoidotm/game/highscore/HighScoreDao.java) luokasta.
+HighScore-taulukko on tallennettu vapaasti muokattavissa olevaan [Google Sheettiin](https://docs.google.com/spreadsheets/d/1QQmmAWKtWSMejc_26vOyew0qZg_niVJ9I0AAVfF9tuE/edit?usp=sharing), josta sovellus lukee ja jonne sovellus kirjoittaa. Tietojen luku ja kirjoitus löytyy [HighScoreDao.java](https://github.com/wood101/otm-harjoitustyo/blob/master/ArkanoidOTM/src/main/java/fi/helsinki/arkanoidotm/game/highscore/HighScoreDao.java) luokasta.
 [Sheetissä](https://docs.google.com/spreadsheets/d/1QQmmAWKtWSMejc_26vOyew0qZg_niVJ9I0AAVfF9tuE/edit?usp=sharing) on skripti, joka järjestää aina muutoksen jälkeen tulokset suuruusjärjestykseen.
 
 
@@ -43,7 +44,7 @@ HighScore-taulukko on tallennettu vapaasti muokattavissa olevaan Google Sheettii
 
 ### Käyttöliittymä
 
-Tiedon tallennus ja luku vaatii Google käyttäjän. Vaikka tämä tapahtuukin vain jos voittaa pelin ja silloinkin sen voi sivuuttaa, niin se on turha välivaihe. Sheetin skripti ei järjestä taulukkoa tarpeeksi nopeasti, uusi rivi näkyy aina huonoimpana arvona.
+Sheetin skripti on hidas ja sovelluksen täytyy odottaa sitä hetken.
 
 ### Sovelluslogiikka
 
