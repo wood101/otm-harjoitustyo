@@ -7,7 +7,7 @@ Lataa tiedosto [ArkanoidOTM-1.0.jar](https://github.com/wood101/otm-harjoitustyo
 Ohjelma käynnistetään komennolla 
 
 ```
-java -jar ArkanoidOTM-Beta.jar
+java -jar ArkanoidOTM-1.0.jar
 ```
 
 ## Pelin pelaaminen
