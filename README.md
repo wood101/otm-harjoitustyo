@@ -10,12 +10,16 @@ Pelissä on tarkoitus kimmottaa palloa laudalla esteisiin, jotka hajoavat törm�
 [Arkkitehtuuri](http://github.com/wood101/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 <br>
 [Käyttöohje](http://github.com/wood101/otm-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+<br>
+[Testausdokumentti](http://github.com/wood101/otm-harjoitustyo/blob/master/dokumentaatio/testausdokumentti.md)
 
 ## Releaset
 
 [Viikko 5](https://github.com/wood101/otm-harjoitustyo/releases/tag/viikko5)
 <br>
 [Viikko 6](https://github.com/wood101/otm-harjoitustyo/releases/tag/viikko6)
+<br>
+[Lopullinen](https://github.com/wood101/otm-harjoitustyo/releases/tag/final)
 
 ## Komentorivitoiminnot
 

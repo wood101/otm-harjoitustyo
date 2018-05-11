@@ -24,6 +24,8 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Google sheetin tiedonhausta vastuussa oleva luokka.
@@ -65,14 +67,15 @@ public class HighScoreDao {
     
     /**
      * Lukee vanhan pienimmän arvon pistetaulukosta.
+     * @param line rivi johon kirjoitetaan sheetissä
      * @return palauttaa pienimmän arvon.
      * @throws IOException ohjelman ulkopuolinen virhe
      * @throws GeneralSecurityException 
      */
-    public static int readOldScore() throws IOException, GeneralSecurityException {
-        List<String> ranges = Arrays.asList("B10");
+    public static int readOldScore(String line) throws IOException, GeneralSecurityException {
+        List<String> ranges = Arrays.asList(line);
         sheetsService = getSheetsService();
-        ValueRange result = sheetsService.spreadsheets().values().get(sheetId, "B10").execute();
+        ValueRange result = sheetsService.spreadsheets().values().get(sheetId, line).execute();
         return Integer.parseInt(result.getValues().get(0).get(0).toString());
     }
     
@@ -82,9 +85,9 @@ public class HighScoreDao {
      * @param user Käyttäjänimi
      */
     public static void writeNewScore(int newScore, String user) {
-        ValueRange body = new ValueRange()
-            .setValues(Arrays.asList(Arrays.asList(user, newScore)));     
         try {
+            ValueRange body = new ValueRange()
+                    .setValues(Arrays.asList(Arrays.asList(user, newScore)));
             sheetsService.spreadsheets().values()
                     .update(sheetId, "A10", body)
                     .setValueInputOption("RAW")

@@ -148,13 +148,13 @@ public class GameGraphics {
         JButton startButton  = new JButton("Enter");
         startButton.addActionListener((ActionEvent e) -> {
             content = textField.getText();
-            if(content.length() < 9) {
+            if(content.length() < 9 && content.length() > 0) {
                 content = content.toUpperCase();
                 inputWindow.dispose();
                 game.won(content);
             }
             else {
-                label.setText("Maximum lenght 8 characters!");
+                label.setText("Write 1-8 characters!");
             }
         });
         inputWindow.add(startButton);

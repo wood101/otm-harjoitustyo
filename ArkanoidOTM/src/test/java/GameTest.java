@@ -57,26 +57,7 @@ public class GameTest {
         game.loseLife();
         assertTrue(game.getLost());
     }
-    /*
-    @Test
-    public void testKeyControls() throws AWTException {
-        game.stop();
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_ENTER);
-        assertTrue(game.getRunning());
-    }
-    
-    @Test
-    public void testMouseControls() throws AWTException {
-        game.start();
-        board = new Board(game);
-        int position = board.getBoard().x;
-        Robot robot = new Robot();
-        robot.mouseMove(5, 5);
-        assertTrue
-        (board.getBoard().x != position);
-    }
-    */
+
     @Test
     public void testWinCondition() {
         game.start();

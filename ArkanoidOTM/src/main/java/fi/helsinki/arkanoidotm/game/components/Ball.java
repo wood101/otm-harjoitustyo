@@ -1,7 +1,9 @@
 package fi.helsinki.arkanoidotm.game.components;
 
 import fi.helsinki.arkanoidotm.game.Game;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.concurrent.ThreadLocalRandom;
 /**
  * Luokka luo pelissä liikkuvan pallo.
@@ -15,7 +17,6 @@ public class Ball {
     private Dimension vector;
     private Point pos;
     private int radius;
-    private boolean collided = false;
     private boolean side = false;
     private boolean top = false;
     
@@ -77,10 +78,7 @@ public class Ball {
      * Tarkistaa törmääkö pallo pelikentän reunoihin.
      */
     public void checkGameFieldEdgeCollision() {
-        if (pos.x - radius <= 0 && vector.width < 0) {
-            vector.width = -vector.width;
-        }
-        if (pos.x + radius >= instance.getSize().getWidth() && vector.width > 0) {
+        if (pos.x - radius <= 0 && vector.width < 0 || pos.x + radius >= instance.getSize().getWidth() && vector.width > 0) {
             vector.width = -vector.width;
         }
         if (pos.y - radius <= 0 && vector.height < 0) {
@@ -107,14 +105,10 @@ public class Ball {
                 if (block.collidesWith(new Rectangle(pos.x - radius / 2, pos.y - radius, radius, radius * 2))) {
                     top = true;
                     block.destroy();
-                    instance.reduceNumOfBlocks();
-                    collided = true;
                 }
                 if (block.collidesWith(new Rectangle(pos.x - radius, pos.y - radius / 2, radius * 2, radius))) {
                     side = true;
                     block.destroy();
-                    instance.reduceNumOfBlocks();
-                    collided = true;
                 }
             }
         }
@@ -122,10 +116,10 @@ public class Ball {
     }
     
     /**
-     * Vaihtaa pallon suuntaa.
+     * Vaihtaa pallon suuntaa osumakulmasta riippuen ja vähentää pelin palikoiden määrää.
      */
     public void changeVectorOnBlockCollision() {
-        if (collided) {
+        if (side | top) {
             if (side) {
                 vector.width = -vector.width;
                 side = false;
@@ -135,6 +129,5 @@ public class Ball {
                 top = false;
             }
         }
-        collided = false;
     }
 }

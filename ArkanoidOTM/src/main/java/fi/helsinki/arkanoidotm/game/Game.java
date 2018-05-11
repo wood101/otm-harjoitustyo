@@ -5,8 +5,10 @@ import fi.helsinki.arkanoidotm.game.components.Ball;
 import fi.helsinki.arkanoidotm.game.components.Block;
 import fi.helsinki.arkanoidotm.graphics.GameGraphics;
 import fi.helsinki.arkanoidotm.game.highscore.HighScore;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Graphics;
+import javax.swing.JPanel;
 
 /**
  * Luokka luo pelin.
@@ -125,7 +127,7 @@ public class Game extends JPanel {
             for (int y = 0; y != blocks[0].length; y++) {
                 int bWidth = field.width / blocksX;
                 int bHeight = (field.height / distTop) / blocksY;
-                blocks[x][y] = new Block(x * bWidth, y * bHeight, bWidth, bHeight);
+                blocks[x][y] = new Block(x * bWidth, y * bHeight, bWidth, bHeight, this);
             }
         }
     }

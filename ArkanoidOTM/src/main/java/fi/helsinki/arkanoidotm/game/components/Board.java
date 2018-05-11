@@ -1,7 +1,7 @@
 package fi.helsinki.arkanoidotm.game.components;
 
 import fi.helsinki.arkanoidotm.game.Game;
-import java.awt.*;
+import java.awt.Rectangle;
 /**
  * Luokka pelaajan liikuteltavasta laudasta.
  */

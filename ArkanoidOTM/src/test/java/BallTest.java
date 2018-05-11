@@ -56,7 +56,7 @@ public class BallTest {
     public void testBallBounceSideOfBlock() {
         ball = new Ball(game, Ball.standardRadius);
         Block[][] blocks = new Block[1][1]; 
-        blocks[0][0] = new Block(150, 150, 30, 30);
+        blocks[0][0] = new Block(150, 150, 30, 30, game);
         game.setBlocks(blocks);
         int x = -3;
         ball.setPosition(185, 160);
@@ -81,7 +81,7 @@ public class BallTest {
     public void testBallBounceUp() {
         ball = new Ball(game, Ball.standardRadius);
         Block[][] blocks = new Block[1][1]; 
-        blocks[0][0] = new Block(150, 150, 30, 30);
+        blocks[0][0] = new Block(150, 150, 30, 30, game);
         game.setBlocks(blocks);
         int x = -2;
         ball.setVector(0, x);

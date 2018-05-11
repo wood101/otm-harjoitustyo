@@ -53,11 +53,11 @@ public class HighScore {
     public void writeScoreIfHighScore(int newScore, String user) {
         int old = 0;
         try {
-            old = HighScoreDao.readOldScore();
+            old = HighScoreDao.readOldScore("B10");
         } catch (IOException ex) {
         } catch (GeneralSecurityException ex) {
         }
-        if (newScore > old) {
+        if (newScore >= old) {
             HighScoreDao.writeNewScore(newScore, user);   
         }
     }

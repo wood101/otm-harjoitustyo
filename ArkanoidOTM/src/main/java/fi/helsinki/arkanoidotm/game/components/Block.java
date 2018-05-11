@@ -1,12 +1,15 @@
 package fi.helsinki.arkanoidotm.game.components;
 
-import java.awt.*;
+import fi.helsinki.arkanoidotm.game.Game;
+import java.awt.Rectangle;
+
 /**
  * Luokka on pelin este.
  */
 public class Block {
     private Rectangle block;
     private boolean destroyed = false;
+    private Game instance;
     
     /**
      * Konstruktori luo uuden esteen.
@@ -14,9 +17,11 @@ public class Block {
      * @param y Esteen sijainnin alku y-akselilla.
      * @param width Esteen pituus.
      * @param height Esteen korkeus.
+     * @param game meneillään oleva peli.
      */
-    public Block(int x, int y, int width, int height) {
+    public Block(int x, int y, int width, int height, Game game) {
         block = new Rectangle(x, y, width, height);
+        this.instance = game;
     }
     
     public Rectangle getBlock() {
@@ -39,5 +44,6 @@ public class Block {
      */
     public void destroy() {
         destroyed = true;
+        instance.reduceNumOfBlocks();
     }
 }

@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto [ArkanoidOTM-Beta.jar](https://github.com/wood101/otm-harjoitustyo/releases/download/viikko6/ArkanoidOTM-Beta.jar)
+Lataa tiedosto [ArkanoidOTM-Beta.jar](https://github.com/wood101/otm-harjoitustyo/releases/download/final/ArkanoidOTM-1.0.jar)
 
 ## Ohjelman käynnistäminen
 
@@ -18,4 +18,14 @@ Uuden pelin voi aloittaa painamalla uudestaan ENTER.
 
 ## Pisteiden kirjaaminen
 
-Kun kaikki palikat on tuhottu, niin voit syöttää maksimissaan 8 merkkisen käyttäjänimen, joka lisätään Enter -nappulasta pisteisiin, jos ne olivat riittävän korkeat. Tämän jälkeen avautuu selaimesta sivu, johon voit hyväksyä google sheetin avaamisen, jonka jälkeen pistetaulukko näytetään. Toisesta napista voi aloittaa suoraan uuden pelin ilman pisteiden tarkastelua tai käyttäjänimen syöttämistä. 
+<img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/input.png">
+
+Kun kaikki palikat on tuhottu, niin voit syöttää maksimissaan 8 merkkisen käyttäjänimen, joka lisätään Enter -nappulasta pisteisiin, jos ne olivat riittävän korkeat. Toisesta napista voi aloittaa suoraan uuden pelin ilman pisteiden tarkastelua tai käyttäjänimen syöttämistä. 
+
+<img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/allow.png">
+
+Tämän jälkeen avautuu selaimesta sivu, johon voit hyväksyä google sheetin avaamisen, jonka jälkeen pistetaulukko näytetään.
+
+<img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/highscore.png">
+
+Enteriä painamalla voi aloittaa uuden pelin.
