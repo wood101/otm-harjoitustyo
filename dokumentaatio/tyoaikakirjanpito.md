@@ -19,5 +19,6 @@
 | 1.5. | 0.5    | Arkkitehtuurikuvaus|
 | 10.5. | 7    | Sheets tietokanta|
 | 10.5. | 3    | Viimeistelyä|
+| 11.5. | 5 | Javadoc ja testit valmiiksi|
 <br>
-Tunnit yhteensä: 31
+Tunnit yhteensä: 36
