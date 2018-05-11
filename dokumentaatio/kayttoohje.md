@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto [ArkanoidOTM-Beta.jar](https://github.com/wood101/otm-harjoitustyo/releases/download/final/ArkanoidOTM-1.0.jar)
+Lataa tiedosto [ArkanoidOTM-1.0.jar](https://github.com/wood101/otm-harjoitustyo/releases/download/final/ArkanoidOTM-1.0.jar)
 
 ## Ohjelman käynnistäminen
 
