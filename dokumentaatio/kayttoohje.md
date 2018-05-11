@@ -22,7 +22,9 @@ Uuden pelin voi aloittaa painamalla uudestaan ENTER.
 
 Kun kaikki palikat on tuhottu, niin voit syöttää maksimissaan 8 merkkisen käyttäjänimen, joka lisätään Enter -nappulasta pisteisiin, jos ne olivat riittävän korkeat. Toisesta napista voi aloittaa suoraan uuden pelin ilman pisteiden tarkastelua tai käyttäjänimen syöttämistä. 
 
-Tämän jälkeen pistetaulukko näytetään.
+<img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/allow.png">
+
+Tämän jälkeen avautuu selaimesta sivu, johon voit hyväksyä google sheetin avaamisen, jonka jälkeen pistetaulukko näytetään.
 
 <img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/highscore.png">
 

@@ -21,5 +21,6 @@
 | 10.5. | 3    | Viimeistelyä|
 | 11.5. | 5 | Javadoc ja testit valmiiksi|
 | 11.5. | 2 | Dokumentointi valmiiksi|
+
 <br>
 Tunnit yhteensä: 38

@@ -202,7 +202,7 @@ public class Game extends JPanel {
     public void reduceNumOfBlocks() {
         numBlocks--;
         score.scoreGainForBlock();
-        if (numBlocks <= 27) {
+        if (numBlocks <= 0) {
             inputHighScore();
         }
     }
@@ -242,7 +242,6 @@ public class Game extends JPanel {
     }
     /**
      * Kutsuu käyttäjänimensyöttö tekstilaatikkoa ja pysäyttää pelin.
-     * @see fi.helsinki.arkanoidotm.graphics.GameGraphics#renderUsernameBox(Game) 
      */
     public void inputHighScore() {
         if (score.getScore() > 0) {
@@ -252,10 +251,9 @@ public class Game extends JPanel {
     }
     
     /**
-     * Kutsuu HighScoreen kirjoitusta ja odottaa Google sheetin skriptiä.
+     * Kutsuu HighScoreen kirjoitusta.
      * Voittaa pelin ja resetoi sen uutta peliä varten.
      * @param user käyttäjänimi
-     * @see fi.helsinki.arkanoidotm.game.highscore.HighScore#WriteScoreIfHighScore(HighScore, String) 
      */
     public void won(String user) {
         score.writeScoreIfHighScore(score.getScore(), user);
