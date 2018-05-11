@@ -32,6 +32,8 @@ Muutamia olennaisimpia toiminnallisuuksia kuvaava sekvenssikaavio, liittyen läh
 <br>
 <img src="https://raw.githubusercontent.com/wood101/otm-harjoitustyo/master/dokumentaatio/kuvat/sekvenssikaavio.png">
 <br>
+Pallon osuessa alareunaan menettää elämän, josta häviää kun elämät loppuu.
+Pallon osuessa palikkaan palikoiden määrä vähenee, joka johtaa pelin voittamiseen kun ne ovat loppu.
 
 ## Tietojen pysyväistallennus
 
