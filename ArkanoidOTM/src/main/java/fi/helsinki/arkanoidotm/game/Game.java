@@ -202,7 +202,7 @@ public class Game extends JPanel {
     public void reduceNumOfBlocks() {
         numBlocks--;
         score.scoreGainForBlock();
-        if (numBlocks <= 0) {
+        if (numBlocks <= 27) {
             inputHighScore();
         }
     }
@@ -259,10 +259,6 @@ public class Game extends JPanel {
      */
     public void won(String user) {
         score.writeScoreIfHighScore(score.getScore(), user);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-        }
         won = true;
         repaint();
         reset();

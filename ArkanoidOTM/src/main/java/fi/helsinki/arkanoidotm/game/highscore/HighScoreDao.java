@@ -6,7 +6,6 @@
 package fi.helsinki.arkanoidotm.game.highscore;
 
 import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -16,8 +15,6 @@ import com.google.api.services.sheets.v4.model.BatchGetValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,17 +33,14 @@ public class HighScoreDao {
      * @throws GeneralSecurityException 
      */
     public static Credential authorize() throws IOException, GeneralSecurityException {
-        InputStream in = HighScoreDao.class.getResourceAsStream("/google-sheets-client-secret.json");
-        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), new InputStreamReader(in));
-        
+        File file = new File(HighScoreDao.class.getResource("/ArkanoidP12.p12").getFile());
         List<String> scopes = Arrays.asList(SheetsScopes.SPREADSHEETS);
-        
         return new GoogleCredential.Builder()
             .setTransport(GoogleNetHttpTransport.newTrustedTransport())
             .setJsonFactory(JacksonFactory.getDefaultInstance())
             .setServiceAccountId("arkanoidhighscore@arkanoid-202811.iam.gserviceaccount.com")
             .setServiceAccountScopes(scopes)
-            .setServiceAccountPrivateKeyFromP12File(new File(HighScoreDao.class.getResource("/ArkanoidP12.p12").getFile()))
+            .setServiceAccountPrivateKeyFromP12File(file)
             .build();
     }
     /**

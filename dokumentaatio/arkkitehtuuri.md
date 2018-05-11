@@ -42,6 +42,8 @@ HighScore-taulukko on tallennettu vapaasti muokattavissa olevaan [Google Sheetti
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
+Jar ei toimi oikein, sillä se ei löydä tiedostopolkua, jossa on valtuudet Sheettiin kirjoittamista varten.
+
 ### Käyttöliittymä
 
 Sheetin skripti on hidas ja sovelluksen täytyy odottaa sitä hetken.
