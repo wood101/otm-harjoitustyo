@@ -202,7 +202,7 @@ public class Game extends JPanel {
     public void reduceNumOfBlocks() {
         numBlocks--;
         score.scoreGainForBlock();
-        if (numBlocks <= 15) {
+        if (numBlocks <= 0) {
             inputHighScore();
         }
     }
