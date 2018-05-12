@@ -24,4 +24,5 @@ Pelissä liikutetaan kuvassa alhaalla näkyvää lautaa, se seuraa hiiren liikke
 - Erilaisia esteitä
 - Poweruppeja
 - Useita eri tasoja
+- Google sheet ei pyydä lupia
 - Taso generaattori
