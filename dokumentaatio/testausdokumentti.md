@@ -30,4 +30,4 @@ Kaikki [perustoiminnallisuudet](http://github.com/wood101/otm-harjoitustyo/blob/
 
 ## Sovellukseen jääneet laatuongelmat
 
-Sovellus vaatii Google tunnuksen taulukon lukua ja kirjoitusta varten.
+Testit muokkaavat käytössä olevaa dataa Sheet-taulukossa.
