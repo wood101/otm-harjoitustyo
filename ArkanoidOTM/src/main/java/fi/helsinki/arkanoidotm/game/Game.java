@@ -8,6 +8,8 @@ import fi.helsinki.arkanoidotm.game.highscore.HighScore;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -257,6 +259,10 @@ public class Game extends JPanel {
      */
     public void won(String user) {
         score.writeScoreIfHighScore(score.getScore(), user);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+        }
         won = true;
         repaint();
         reset();
