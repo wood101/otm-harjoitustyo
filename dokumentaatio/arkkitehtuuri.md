@@ -45,7 +45,7 @@ HighScore-taulukko on tallennettu vapaasti muokattavissa olevaan Google Sheettii
 
 ### Käyttöliittymä
 
-Tiedon tallennus ja luku vaatii Google käyttäjän. Vaikka tämä tapahtuukin vain jos voittaa pelin ja silloinkin sen voi sivuuttaa, niin se on turha välivaihe. Sheetin skripti ei järjestä taulukkoa tarpeeksi nopeasti, uusi rivi näkyy aina huonoimpana arvona.
+Sheetin skripti ei järjestä taulukkoa suuruusjärjestykseen tarpeeksi nopeasti ja sovellus joutuu odottamaan hetken.
 
 ### Sovelluslogiikka
 
